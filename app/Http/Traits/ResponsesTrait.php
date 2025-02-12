@@ -20,11 +20,11 @@ trait ResponsesTrait
         ], 201);
     }
 
-    public function respondError($message = 'Error Occured')
+    public function respondError($message = 'Error Occured' , $status = 403)
     {
         return response([
             'message' => $message,
-        ], 403);
+        ], $status);
     }
 
     public function respondUnAuthenticated(string $message = null){

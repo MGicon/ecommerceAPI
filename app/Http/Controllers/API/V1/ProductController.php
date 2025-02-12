@@ -129,10 +129,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        if(File::exists($product->image)) {
-            File::delete($product->image);
-        }   
-        
         $product->delete();
         return $this->respondNoContent();
     }

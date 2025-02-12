@@ -19,11 +19,11 @@ class LoggedInMiddleware
         $user = auth('sanctum')->user();
 
         if (!$user) {
-            return response(["message" => "Unauthorized"], 403);
+            return response(["message" => "Unauthorized"], 401);
         }
 
         if ($user->ban && $user->ban > now()) {
-            return response(["message" => "User is banned until " . $user->ban], 403);
+            return response(["message" => "User is banned until " . $user->ban], 401);
         }
 
         $request->merge(['user' => $user]);

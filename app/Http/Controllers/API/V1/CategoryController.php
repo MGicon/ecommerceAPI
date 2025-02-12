@@ -43,7 +43,7 @@ class CategoryController extends Controller
 
         if(isset($data['parent_id']) && !$this->categoryService->checkValidParent($data['parent_id'])){
             
-            return $this->respondError("Can't create sub category under sub category");
+            return $this->respondError("Can't create sub category under sub category" , 422);
         }
 
         $category = Category::create($request->validated());
@@ -132,12 +132,12 @@ class CategoryController extends Controller
 
 
         if(isset($data['parent_id']) && $category->id == $data['parent_id']){
-            return $this->respondError("Category can't be a sub category of itself");
+            return $this->respondError("Category can't be a sub category of itself" , 422);
         }
 
         if(isset($data['parent_id']) && !$this->categoryService->checkValidParent($data['parent_id'])){
             
-            return $this->respondError("Can't create sub category under sub category");
+            return $this->respondError("Can't create sub category under sub category" , 422);
         }
 
         $category->update($request->validated());
@@ -147,7 +147,7 @@ class CategoryController extends Controller
             $category->addMediaFromRequest('image')->toMediaCollection("main");
         }
 
-        return $this->respondOk($category, 'Category updated successfully');
+        return $this->respondOk(CategoryResource::make($category), 'Category updated successfully');
     }
 
     /**

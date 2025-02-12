@@ -17,7 +17,7 @@ class AdminMiddleware
     {
         
         if (!$request->user->hasRole('admin') && !$request->user->hasRole('superAdmin')){
-            return response(["message" => "Unauthorized"], 403);
+            return response(["message" => "Unauthorized"], status: 403);
         }
 
         return $next($request);

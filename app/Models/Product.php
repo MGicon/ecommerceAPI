@@ -12,7 +12,7 @@ use App\Http\Traits\CustomRateable;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory , InteractsWithMedia , CustomR   ateable;
+    use HasFactory , InteractsWithMedia , CustomRateable;
 
     public $fillable = ['name', 'description', 'price', 'priceBefore','user_id', 'category_id' , 'live' , 'quantity' , 'special_offer' , 'daily_offer'];
     
